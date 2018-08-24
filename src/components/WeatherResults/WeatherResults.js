@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+const Moment = require('moment');
 
 class WeatherResults extends Component {
     render() {
@@ -7,9 +8,13 @@ class WeatherResults extends Component {
         return(
             <div>
                 { this.props.city && (
-                    <p> {this.props.city}</p>
+                    <h3> {this.props.city}</h3>
                 )}
-    
+                
+                { this.props.time && (
+                    <p> Today <br/> {Moment(this.props.time).format("LL")}</p>
+                )}
+
                 { this.props.icon && (
                     <img src = {`http://openweathermap.org/img/w/${this.props.icon}.png`}/>
                 )}
@@ -21,16 +26,12 @@ class WeatherResults extends Component {
                 { this.props.temperature && (
                     <p> {Math.round(this.props.temperature)}&#176;</p>
                 )}
-
                 { this.props.temp_max && this.props.temp_min && (
                     <p> Max: {Math.round(this.props.temp_max)}&#176; <br/> Min: {Math.round(this.props.temp_min)}&#176;</p>    
                 )}
-                { this.props.sunrise && this.props.sunset && (
-                    <p>{this.props.sunrise} <br/> {this.props.sunset}</p>    
-                )}
 
                 { this.props.humidity && this.props.wind && (
-                    <p>{this.props.humidity} <br/> {this.props.wind}</p>    
+                    <p>Humidity: {this.props.humidity}% <br/> Wind: E {Math.round(this.props.wind)} mph</p>    
                 )}
 
             </div>

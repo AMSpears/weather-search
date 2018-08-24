@@ -15,8 +15,7 @@ class App extends Component {
     temperature: undefined,
     temp_max: undefined,
     temp_min: undefined, 
-    sunrise: undefined,
-    sunset: undefined,
+    time: undefined,
     humidity: undefined,
     wind: undefined, 
     error: undefined
@@ -26,23 +25,23 @@ class App extends Component {
     const city = e.target.elements.city.value
     const country = e.target.elements.country.value
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=imperial&appid=${API_KEY}&units=metric`
+      `http://api.openweathermap.org/data/2.5/forecast?id=52490&units=imperial&appid=${API_KEY}&q=${city},${country}`
+      // `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=imperial&appid=${API_KEY}&units=metric`
     )
     const data = await api_call.json()
     if (city && country) {
       console.log(data)
       this.setState({
-        city: data.name,
-        country: data.sys.country,
-        icon: data.weather[0].icon,
-        description: data.weather[0].description,
-        temperature: data.main.temp,
-        temp_max: data.main.temp_max,
-        temp_min: data.main.temp_min,
-        sunrise: data.sys.sunrise,
-        sunset: data.sys.sunset,
-        humidity: data.main.humidity,
-        wind: data.wind.speed,
+        city: data.city.name,
+        country: data.country,
+        icon: data.list[0].weather[0].icon,
+        description: data.list[0].weather[0].description,
+        temperature: data.list[0].main.temp,
+        temp_max: data.list[0].main.temp_max,
+        temp_min: data.list[0].main.temp_min,
+        time: data.list[0].dt_txt,
+        humidity: data.list[0].main.humidity,
+        wind: data.list[0].wind.speed,
         error: ''
       })
     } else {
@@ -54,8 +53,7 @@ class App extends Component {
         temperature: undefined,
         temp_max: undefined,
         temp_min: undefined,
-        sunrise: undefined,
-        sunset: undefined, 
+        time: undefined,
         wind: undefined,
         humidity: undefined,
         error: 'Please enter the value'
@@ -76,8 +74,7 @@ class App extends Component {
           temperature = {this.state.temperature}
           temp_max = {this.state.temp_max}
           temp_min = {this.state.temp_min}
-          sunrise = {this.state.sunrise}
-          sunset = {this.state.sunset}
+          time = {this.state.time}
           humidity = {this.state.humidity}
           wind = {this.state.wind}
           error = {this.state.error}
