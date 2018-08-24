@@ -19,11 +19,11 @@ class WeatherResults extends Component {
                 )}
 
                 { this.props.temperature && (
-                    <p> {this.props.temperature}</p>
+                    <p> {Math.round(this.props.temperature)}&#176;</p>
                 )}
 
                 { this.props.temp_max && this.props.temp_min && (
-                    <p>{this.props.temp_max} <br/> {this.props.temp_min}</p>    
+                    <p> Max: {Math.round(this.props.temp_max)}&#176; <br/> Min: {Math.round(this.props.temp_min)}&#176;</p>    
                 )}
                 { this.props.sunrise && this.props.sunset && (
                     <p>{this.props.sunrise} <br/> {this.props.sunset}</p>    
