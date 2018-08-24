@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from "./components/Header/Header"
 import Form from "./components/Form/Form"
+import WeatherResults from "./components/WeatherResults/WeatherResults"
 import './App.css';
 
 const API_KEY = 'd0c74e4757653dd7d26fe20813b354d8'
@@ -67,6 +68,20 @@ class App extends Component {
       <div className="App">
       <Header/>
       <Form getWeather={this.getWeather}/>
+      <WeatherResults
+          city = {this.state.city}
+          country = {this.state.country}
+          icon = {this.state.icon}
+          description = {this.state.description}
+          temperature = {this.state.temperature}
+          temp_max = {this.state.temp_max}
+          temp_min = {this.state.temp_min}
+          sunrise = {this.state.sunrise}
+          sunset = {this.state.sunset}
+          humidity = {this.state.humidity}
+          wind = {this.state.wind}
+          error = {this.state.error}
+      />
       </div>
     );
   }
