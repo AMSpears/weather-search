@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from "./components/Header/Header"
+// import Header from "./components/Header/Header"
 import Form from "./components/Form/Form"
 import WeatherResults from "./components/WeatherResults/WeatherResults"
 import './App.css';
@@ -26,7 +26,6 @@ class App extends Component {
     const country = e.target.elements.country.value
     const api_call = await fetch(
       `http://api.openweathermap.org/data/2.5/forecast?id=52490&units=imperial&appid=${API_KEY}&q=${city},${country}`
-      // `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=imperial&appid=${API_KEY}&units=metric`
     )
     const data = await api_call.json()
     if (city && country) {
@@ -56,7 +55,7 @@ class App extends Component {
         time: undefined,
         wind: undefined,
         humidity: undefined,
-        error: 'Please enter the value'
+        error: 'You enter the wrong information. Please try again!'
       })
     }
   }
@@ -64,9 +63,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Header/>
       <Form getWeather={this.getWeather}/>
-      <WeatherResults
+         <WeatherResults
           city = {this.state.city}
           country = {this.state.country}
           icon = {this.state.icon}
@@ -77,9 +75,9 @@ class App extends Component {
           time = {this.state.time}
           humidity = {this.state.humidity}
           wind = {this.state.wind}
-          error = {this.state.error}
       />
       </div>
+
     );
   }
 }

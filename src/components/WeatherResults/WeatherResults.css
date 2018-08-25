@@ -1,0 +1,20 @@
+.results-container {
+    margin-top: 30px;
+    margin-left:130px;
+    background: #f4f4e6;
+    padding: 30px;
+    border-radius:50px;
+    width:50%;
+}
+
+h3 {
+    color: #484848;
+    font-size: 30px;
+}
+
+p {
+    font-size: 20px;
+}
+img {
+ width: 80px;
+}
